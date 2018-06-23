@@ -51,7 +51,6 @@ You can use the `./contrib/term.sh` script in another terminal instead.
 ```
 $ vagrant ssh
 [bargee@barge ~]$ /vagrant/contrib/term.sh h1
-root@p4-barge:~# PS1='\u@<h1>:\w\$ '
 root@<h1>:~# 
 ```
 
@@ -59,7 +58,6 @@ root@<h1>:~#
 
 ```
 $ ./contrib/term.sh h1
-root@p4-barge:~# PS1='\u@<h1>:\w\$ '
 root@<h1>:~# ifconfig
 h1-eth0   Link encap:Ethernet  HWaddr 00:00:00:00:01:01
           inet addr:10.0.1.1  Bcast:10.0.1.255  Mask:255.255.255.0

@@ -151,4 +151,5 @@ ENV TUTORIALS_DEPS="make net-tools iputils-ping python-scapy python-setuptools t
 RUN sudo apt-get -q update \
  && sudo apt-get -q -y install --no-install-recommends ${TUTORIALS_DEPS} \
  && sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /var/cache/debconf/* /var/log/* \
- && sudo mkdir -p /var/log/openvswitch
+ && sudo mkdir -p /var/log/openvswitch \
+ && echo "[ -n \"\${NODENAME}\" ] && PS1='\\u@<\${NODENAME}>:\\w\\\$ '" >> .bashrc

@@ -9,14 +9,12 @@ NODE=${1}
 
 PID=$(docker exec -it p4-tutorials ps ax | grep mininet:${NODE} | awk '{print $1}')
 
-CMD="docker exec -it p4-tutorials sudo mnexec -a ${PID} bash && exit 0"
+CMD="docker exec -it p4-tutorials sudo mnexec -a ${PID} env NODENAME=${NODE} bash && exit 0"
 
 if [ "${TERM_PROGRAM}" = "Apple_Terminal" ] ; then
   osascript <<END
     tell application "Terminal"
       set currentTab to do script "${CMD}"
-      delay 1
-      do script ("PS1='\\\\u@<${NODE}>:\\\\w\\\\$ '") in currentTab
     end tell
 END
 elif [ "${TERM_PROGRAM}" = "iTerm.app" ] ; then
@@ -32,7 +30,6 @@ elif [ "${TERM_PROGRAM}" = "iTerm.app" ] ; then
     tell application "iTerm"
       tell application "System Events" to keystroke "d" using {shift down, command down}
       tell the current session of current ${WINDOW} to write text "${CMD}"
-      tell the current session of current ${WINDOW} to write text "PS1='\\\\u@<${NODE}>:\\\\w\\\\$ '"
       tell application "System Events" to keystroke "[" using {command down}
     end tell
 END
